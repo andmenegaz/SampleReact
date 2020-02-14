@@ -4,15 +4,13 @@ import { Link } from 'react-router-dom';
 
 const Filme = (props) => {
 
-  const { params } = props.match;
-
   const [data, setData] = useState([]);
   const url = "https://sujeitoprogramador.com/r-api/?api=filmes";
 
   useEffect(
     () => {
       const loadData = async () => {
-        const response = await Axios.get(`${url}/${params.id}`);
+        const response = await Axios.get(`${url}/123`);
         setData(response.data);
         console.log(data);
       };
@@ -22,7 +20,7 @@ const Filme = (props) => {
   );
 
   return (
-    <div className="filme-info">
+    <div className="filme" id="filme">
       {data.id > 0 &&
         <article key={data.id}>
           <strong>{data.nome}</strong>

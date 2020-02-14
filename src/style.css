@@ -10,18 +10,34 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
+    font-size: 15px;
     width: 100%;
     height: 60px;
     background-color: #333;
     color: #FFF;
-
 }
 
-header strong:hover{
-    color: #DDD;
-    cursor: pointer;
-    transition: all 0.8s;
+.menu{
+    display: flex;
+}
+
+ul{
+    display: flex;
+}
+
+nav ul, nav li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 15px;
+    color: #FFF;
+    font-weight: bold;
 }
 
 footer{
@@ -34,55 +50,27 @@ footer{
     background-color: #333;
 }
 
-.lista-filmes{
-    margin: 15px;
-}
-
-.lista-filmes article{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #FFF;
-    width: 700px;
-    border-width: 1px;
-    border-radius: 7px;
-    margin: 8px;
-    padding: 10px;
-}
-
-.lista-filmes strong{
-    font-size: 25px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    color: #000;
-}
-
-.lista-filmes img{
-    border-radius: 5px;
-}
-
-.lista-filmes a{
-    font-size: 20px;
-    text-decoration: none;
-    text-align: center;
-    color: #FFF;
+.inicio{
     width: 100%;
-    background-color: brown;
-    height: 40px;
-    margin-top: -30px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
+    height: 900px;
+    background-color: #0000FF;
 }
 
-.filme-info{
+.filme{
     display: flex;
     flex-direction: column;
     max-width: 900px;
     background-color: #FFF;
 }
 
-.filme-info article{
+.sobre{
+    width: 100%;
+    height: 600px;
+    background-color: #DDD;
+}
+
+
+.filme article{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,14 +81,14 @@ footer{
     padding: 10px;
 }
 
-.filme-info strong{
+.filme strong{
     font-size: 25px;
     margin-bottom: 15px;
     margin-top: 10px;
     color: #000;
 }
 
-.filme-info img{
+.filme img{
     border-radius: 20px;
 }
 
