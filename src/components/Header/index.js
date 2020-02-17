@@ -1,13 +1,21 @@
 import React from 'react';
-import {HashLink as Link} from 'react-router-hash-link'
+import {Link} from 'react-router-dom';
+import './header.css';
 
-const Header = (props) => {
 
-    return (
-        <header className="header">
-            <h1>Projeto Firebase</h1>
-        </header>
-    );
+function Header(){
+  return(
+    <header id="main-header">
+      <div className="header-content">
+        <Link to="/">
+          Blog Programador
+        </Link>
+        <Link to="/login">
+          Entrar
+        </Link>
+      </div>
+    </header>
+  );
 }
 
 export default Header;
