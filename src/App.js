@@ -1,61 +1,47 @@
 import React, {Component} from 'react';
-import firebase from 'firebase';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import firebase from './firebase';
 
-export default class App extends Component{
+import Home from './components/Home';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Register from './components/Register';
+import Header from './components/Header';
+import New from './components/New';
+import './global.css';
+import './app.css';
 
-  constructor(props){
-    super(props);
-    this.state = {
-      token: 'Carregando...',
-      nome: '',
-      idade: ''
-    };
+class App extends Component{
 
+  state = {
+    firebaseInitialized: false
+  };
 
-    let firebaseConfig = {
-      apiKey: "AIzaSyC9w9EMSf4sLuuWC_meLNzM-GQ1NHeSCNI",
-      authDomain: "reactapp-2e4d7.firebaseapp.com",
-      databaseURL: "https://reactapp-2e4d7.firebaseio.com",
-      projectId: "reactapp-2e4d7",
-      storageBucket: "reactapp-2e4d7.appspot.com",
-      messagingSenderId: "836048674983",
-      appId: "1:836048674983:web:1384e61fba790f4e"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    
-    /* Olheiro 
-    firebase.database().ref('token').on('value', (snapshot) => {
-      let state = this.state;
-      state.token = snapshot.val();
-      this.setState(state);
-    });
-    */
-
-    firebase.database().ref('token').once('value').then((snapshot) => {
-      let state = this.state;
-      state.token = snapshot.val();
-      this.setState(state);
-    });
-
-    firebase.database().ref('usuarios').child(1).on('value', (snapshot)=>{
-      let state = this.state;
-      state.nome = snapshot.val().nome;
-      state.idade = snapshot.val().idade;
-      this.setState(state);
-    });
-
-
+  componentDidMount(){
+    firebase.isInitialized().then(resultado => {
+      // Devolve o usuario
+      this.setState({firebaseInitialized: resultado});
+    })
   }
 
   render(){
-    const { token, nome, idade } = this.state;
-    return(
-      <div>
-        <h1>Token: {token}</h1>
-        <h1>Nome: {nome}</h1>
-        <h1>Idade: {idade}</h1>
+    return this.state.firebaseInitialized !== false ? (
+      <BrowserRouter>
+        <Header/>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/dashboard/new" component={New} />
+        </Switch>
+      </BrowserRouter>
+    ) : (
+      <div id="loading">
+        <h1>Carregando...</h1>
       </div>
     );
   }
 }
+
+export default App;
